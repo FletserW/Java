@@ -5,7 +5,6 @@ public class Operario extends Empregado {
     private double comissao;
 
     public Operario() {
-        // Construtor padrão
     }
 
     public Operario(String nome, String endereco, String telefone, int codigoSetor, double salarioBase, double imposto, double valorProducao, double comissao) {
@@ -14,7 +13,6 @@ public class Operario extends Empregado {
         this.comissao = comissao;
     }
 
-    // Métodos getters e setters para valorProducao e comissao
     public double getValorProducao() {
         return valorProducao;
     }

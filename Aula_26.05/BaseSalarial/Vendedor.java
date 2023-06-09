@@ -5,7 +5,6 @@ public class Vendedor extends Empregado {
     private double comissao;
 
     public Vendedor() {
-        // Construtor padrão
     }
 
     public Vendedor(String nome, String endereco, String telefone, int codigoSetor, double salarioBase, double imposto, double valorVendas, double comissao) {
@@ -14,7 +13,6 @@ public class Vendedor extends Empregado {
         this.comissao = comissao;
     }
 
-    // Métodos getters e setters para valorVendas e comissao
     public double getValorVendas() {
         return valorVendas;
     }
@@ -31,7 +29,6 @@ public class Vendedor extends Empregado {
         this.comissao = comissao;
     }
 
-    @Override
     public double calcularSalario() {
         return super.calcularSalario() + (valorVendas * (comissao / 100));
     }

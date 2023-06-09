@@ -5,7 +5,6 @@ public class Fornecedor extends Pessoa {
     private double valorDivida;
 
     public Fornecedor() {
-        // Construtor padrão
     }
 
     public Fornecedor(String nome, String endereco, String telefone, double valorCredito, double valorDivida) {
@@ -14,7 +13,6 @@ public class Fornecedor extends Pessoa {
         this.valorDivida = valorDivida;
     }
 
-    // Métodos getters e setters para valorCredito e valorDivida
     public double getValorCredito() {
         return valorCredito;
     }

@@ -6,7 +6,7 @@ public class Empregado extends Pessoa {
     private double imposto;
 
     public Empregado() {
-        // Construtor padrão
+
     }
 
     public Empregado(String nome, String endereco, String telefone, int codigoSetor, double salarioBase, double imposto) {
@@ -16,7 +16,6 @@ public class Empregado extends Pessoa {
         this.imposto = imposto;
     }
 
-    // Métodos getters e setters para codigoSetor, salarioBase e imposto
     public int getCodigoSetor() {
         return codigoSetor;
     }

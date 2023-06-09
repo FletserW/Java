@@ -4,7 +4,6 @@ public class Administrador extends Empregado {
     private double ajudaDeCusto;
 
     public Administrador() {
-        // Construtor padrão
     }
 
     public Administrador(String nome, String endereco, String telefone, int codigoSetor, double salarioBase, double imposto, double ajudaDeCusto) {
@@ -12,7 +11,6 @@ public class Administrador extends Empregado {
         this.ajudaDeCusto = ajudaDeCusto;
     }
 
-    // Método getter e setter para ajudaDeCusto
     public double getAjudaDeCusto() {
         return ajudaDeCusto;
     }
@@ -21,7 +19,6 @@ public class Administrador extends Empregado {
         this.ajudaDeCusto = ajudaDeCusto;
     }
 
-    @Override
     public double calcularSalario() {
         return super.calcularSalario() + ajudaDeCusto;
     }

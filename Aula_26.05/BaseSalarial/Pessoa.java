@@ -6,7 +6,7 @@ public class Pessoa {
     private String telefone;
 
     public Pessoa() {
-        // Construtor padrão
+
     }
 
     public Pessoa(String nome, String endereco, String telefone) {
@@ -15,7 +15,6 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
-    // Métodos getters e setters para nome, endereco e telefone
     public String getNome() {
         return nome;
     }
