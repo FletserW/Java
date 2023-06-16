@@ -1,4 +1,4 @@
-class Caminhao extends Veiculo {
+public class Caminhao extends Veiculo {
     private float toneladas;
     private int alturaMax;
     private int comprimento;
@@ -10,7 +10,6 @@ class Caminhao extends Veiculo {
         this.comprimento = comprimento;
     }
 
-    @Override
     public void mostrarDados() {
         super.mostrarDados();
         System.out.println("Toneladas: " + toneladas);
