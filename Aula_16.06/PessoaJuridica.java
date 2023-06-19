@@ -36,8 +36,8 @@ public class PessoaJuridica extends Pessoa{
         this.razaoSocial = razaoSocial;
     }
     public void imprimir(){
-        System.out.println("CNPJ: "+this.getCnpj);
-        System.out.println("Inscrição Estadual: "+this.getInsEstadual);
+        System.out.println("CNPJ: "+this.getCnpj());
+        System.out.println("Inscrição Estadual: "+this.getInsEstadual());
     }
     
 }

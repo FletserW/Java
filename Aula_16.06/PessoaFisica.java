@@ -1,19 +1,19 @@
 public class PessoaFisica extends Pessoa{
-    private double cpf;
+    private long cpf;
     private int dataNasc;
 
     public PessoaFisica(){
-
+        super("Sei la");
     }
-    public PessoaFisica(String nome, double cpf, int dataNasc){
+    public PessoaFisica(String nome, long cpf, int dataNasc){
         super(nome);
         this.cpf = cpf;
         this.dataNasc = dataNasc;
     }
-    public double getCpf() {
+    public long getCpf() {
         return cpf;
     }
-    public void setCpf(double cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
     public int getDataNasc() {
@@ -23,8 +23,8 @@ public class PessoaFisica extends Pessoa{
         this.dataNasc = dataNasc;
     }
     public void imprimir(){
-        System.out.println("CPF: "+this.getCpf);
-        System.out.println("Data de nascimento: "+this.getDataNasc);
+        System.out.println("CPF: "+this.getCpf());
+        System.out.println("Data de nascimento: "+this.getDataNasc());
     }
     
 }
