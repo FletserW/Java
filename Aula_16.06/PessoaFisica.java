@@ -3,7 +3,7 @@ public class PessoaFisica extends Pessoa{
     private int dataNasc;
 
     public PessoaFisica(){
-        super("Sei la");
+        super(" ");
     }
     public PessoaFisica(String nome, long cpf, int dataNasc){
         super(nome);
