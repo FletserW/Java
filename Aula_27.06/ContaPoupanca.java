@@ -14,18 +14,21 @@ public class ContaPoupanca extends ContaBancaria {
         this.taxaDeOperacao = taxaDeOperacao;
     }
 
-    public boolean sacar(double valor){
-        if(getSaldo()<= valor){
-            setSaldo(getSaldo()-valor);
+    public boolean sacar(double valor) {
+        if (getSaldo() >= valor) {
+            setSaldo(getSaldo() - (valor + taxaDeOperacao));
             return true;
-        }else
+        } else
             return false;
     }
-    public void depositar(double valor){
-        setSaldo(getSaldo()-valor);
+
+    public void depositar(double valor) {
+        setSaldo(getSaldo() + valor);
     }
-    public void mostrarDados(){
+
+    public void mostrarDados() {
+        System.out.println("====== Conta Poupanca =====");
         super.mostrarDados();
-        System.out.println("Taxa de Operação: "+getTaxaDeOperacao());
+        System.out.println("Taxa de Operacao: " + getTaxaDeOperacao());
     }
 }

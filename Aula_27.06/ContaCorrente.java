@@ -14,19 +14,22 @@ public class ContaCorrente extends ContaBancaria {
         this.limite = limite;
     }
 
-    public boolean sacar(double valor){
-        if(getSaldo()+getLimite()<= valor){
-            setSaldo(getSaldo()-valor);
+    public boolean sacar(double valor) {
+        if (getSaldo() + getLimite() >= valor) {
+            setSaldo(getSaldo() - valor);
             return true;
-        }else
+        } else
             return false;
     }
-    public void depositar(double valor){
-        setSaldo(getSaldo()-valor);
+
+    public void depositar(double valor) {
+        setSaldo(getSaldo() + valor);
     }
-    public void mostrarDados(){
+
+    public void mostrarDados() {
+        System.out.println("====== Conta Corrente =====");
         super.mostrarDados();
-        System.out.println("Limite: "+getLimite());
+        System.out.println("Limite: " + getLimite());
     }
-    
+
 }
