@@ -19,7 +19,7 @@ public class TelaControle extends JFrame {
         sairButton.setBounds(50, 120, 100, 50);
 
         painelSemaforo = new PainelSemaforo();
-        painelSemaforo.setBounds(200, 50, 200, 200); // Posicione o PainelSemaforo ao lado dos botões.
+        painelSemaforo.setBounds(180, 10, 240, 240);
 
         jogarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -38,7 +38,7 @@ public class TelaControle extends JFrame {
         add(sairButton);
         add(painelSemaforo);
         setTitle("Jogo Semáforo");
-        setSize(400, 250);
+        setSize(470, 320);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setVisible(true);
