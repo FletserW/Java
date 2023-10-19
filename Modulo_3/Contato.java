@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package JavaBeans;
+package Modulo_3;
 
-/**
- *
- * @author nicolas
- */
 public class Contato {
     private String contato;
     private String celular;
@@ -49,5 +41,4 @@ public class Contato {
     public boolean getBloqueio(){
         return this.bloqueio;
     }
-    
 }
