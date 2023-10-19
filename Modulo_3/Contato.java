@@ -6,6 +6,14 @@ public class Contato {
     private String email;
     private String grupo;
     private boolean bloqueio;
+
+    public Contato(String contato, String celular, String email, String grupo, boolean bloqueio) {
+        this.contato = contato;
+        this.celular = celular;
+        this.email = email;
+        this.grupo = grupo;
+        this.bloqueio = bloqueio;
+    }
     
     public void setContato(String contato){
         this.contato= contato;
