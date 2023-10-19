@@ -12,7 +12,7 @@ public class PainelSemaforo extends JPanel {
     private JLabel mensagemL;
 
     public PainelSemaforo() {
-        setLayout(null);
+        
 
         vermelhoB = new JButton();
         amareloB = new JButton();
@@ -22,9 +22,9 @@ public class PainelSemaforo extends JPanel {
         amareloB.setBackground(Color.YELLOW);
         verdeB.setBackground(Color.GREEN);
 
-        vermelhoB.setBounds(20, 50, 40, 40);
-        amareloB.setBounds(20, 120, 60, 60);
-        verdeB.setBounds(20, 190, 60, 60);
+        vermelhoB.setBounds(20, 00, 40, 40);
+        amareloB.setBounds(20, 50, 40, 40);
+        verdeB.setBounds(20, 100, 40, 40);
 
         vermelhoB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -53,6 +53,7 @@ public class PainelSemaforo extends JPanel {
         add(amareloB);
         add(verdeB);
         add(mensagemL);
+        setLayout(null);
         setVisible(false);
     }
 

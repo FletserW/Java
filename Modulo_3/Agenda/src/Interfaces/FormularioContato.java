@@ -16,7 +16,7 @@ public class FormularioContato extends JFrame {
         setLayout(null);
 
         JLabel titulo = new JLabel("AGENDA");
-        titulo.setBounds(150, 5, 100, 20);
+        titulo.setBounds(180, 5, 100, 20);
         
         JLabel lblContato = new JLabel("Contato:");
         lblContato.setBounds(20, 30, 100, 30);
