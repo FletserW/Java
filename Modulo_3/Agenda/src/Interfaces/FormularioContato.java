@@ -4,15 +4,14 @@
  */
 package Interfaces;
 
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FormularioContato extends JFrame {
+public class FormularioContato extends JPanel {
     public FormularioContato() {
-        setTitle("Formulário de Contato");
         setSize(400, 350);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
         JLabel titulo = new JLabel("AGENDA");
