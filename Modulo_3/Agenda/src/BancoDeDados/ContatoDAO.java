@@ -17,7 +17,7 @@ public class ContatoDAO {
     public static boolean salvarContato(Contato contato) {
         String sql = "INSERT INTO contatos (contato, celular, email, grupo, bloqueio) VALUES (?, ?, ?, ?, ?)";
         try (Connection conexao = ConexaoBD.conectar();
-             PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
             preparedStatement.setString(1, contato.getContato());
             preparedStatement.setString(2, contato.getCelular());
             preparedStatement.setString(3, contato.getEmail());

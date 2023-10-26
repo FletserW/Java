@@ -1,12 +1,11 @@
 package Interfaces;
 
 import static java.awt.Color.gray;
+import static java.awt.Color.white;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class PainelOpcoes extends JPanel {
     private JButton btnNovo;
@@ -19,7 +18,9 @@ public class PainelOpcoes extends JPanel {
         setLayout(null);
 
         btnNovo = new JButton("Novo");
+        btnNovo.setBackground(white);
         btnPesquisar = new JButton("Pesquisar");
+        btnPesquisar.setBackground(white);
 
         btnNovo.setBounds(10, 30, 100, 30);
         btnPesquisar.setBounds(10, 70, 100, 30);
@@ -59,11 +60,4 @@ public class PainelOpcoes extends JPanel {
         });
     }
 
-    public JButton getBtnNovoContato() {
-        return btnNovo;
-    }
-
-    public JButton getBtnPesquisarContatos() {
-        return btnPesquisar;
-    }
 }
