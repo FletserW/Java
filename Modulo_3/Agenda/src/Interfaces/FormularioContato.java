@@ -5,6 +5,8 @@
 package Interfaces;
 
 
+import BancoDeDados.ContatoDAO;
+import JavaBeans.Contato;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,11 +60,27 @@ public class FormularioContato extends JPanel {
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.setBounds(150, 230, 100, 30);
 
+        // No ActionListener do botão "Salvar" no FormularioContato
         btnSalvar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Dados salvos!");
+                String nome = txtContato.getText();
+                String celular = txtCelular.getText();
+                String email = txtEmail.getText();
+                String grupo = (String) comboGrupo.getSelectedItem();
+                boolean bloqueio = radioSim.isSelected();
+
+                // Crie um objeto Contato com os dados do formulário
+                Contato novoContato = new Contato(nome, celular, email, grupo, bloqueio);
+
+                // Salve o objeto Contato no banco de dados
+                if (ContatoDAO.salvarContato(novoContato)) {
+                    JOptionPane.showMessageDialog(null, "Contato salvo com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro ao salvar o contato.");
+                }
             }
         });
+
 
         add(titulo);
         add(lblContato);
