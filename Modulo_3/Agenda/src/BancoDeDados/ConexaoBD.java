@@ -12,7 +12,7 @@ public class ConexaoBD {
     private static final String DRIVE = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/agenda";
     private static final String USUARIO = "root@localhost";
-    private static final String SENHA = "senhar1235";
+    private static final String SENHA = "";
     
     public static Connection conectar() {
         Connection conexao = null;
