@@ -21,7 +21,7 @@ public class Main extends JFrame {
         // Crie uma instância da classe principal AgendaApp
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Main();
+                Main main = new Main();
             }
         });
     }
