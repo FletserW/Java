@@ -120,10 +120,8 @@ public class CadastroPedidoForm extends JFrame {
         btnAdicionarProduto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica para adicionar produto ao pedido
-                // Pode ser necessário adicionar lógica de validação e cálculos aqui
-                JOptionPane.showMessageDialog(null, "Produto adicionado ao pedido!");
-            }
+        adicionarProdutoAoPedido();
+    }
         });
 
         // Define a ação do botão Finalizar Pedido =============================
@@ -214,5 +212,62 @@ public class CadastroPedidoForm extends JFrame {
             }
         }
     }
+    //Adicionar produtos ao pedido =============================================
+    private void adicionarProdutoAoPedido() {
+        Connection conexao = ConexaoBD.conectar();
+
+        // Obtém os valores dos campos
+        Date dataPedido = getDataSelecionada();
+        String observacoes = txtAreaObservacoes.getText();
+
+        // Insere os dados na tabela de pedidos
+        String sqlPedido = "INSERT INTO pedidos (data_pedido, observacao) VALUES (?, ?)";
+        try (PreparedStatement pstmtPedido = conexao.prepareStatement(sqlPedido, Statement.RETURN_GENERATED_KEYS)) {
+            pstmtPedido.setDate(1, new java.sql.Date(dataPedido.getTime()));
+            pstmtPedido.setString(2, observacoes);
+
+            pstmtPedido.executeUpdate();
+
+            // Obtém o ID gerado para o pedido
+            ResultSet generatedKeys = pstmtPedido.getGeneratedKeys();
+            int idPedido = -1;
+            if (generatedKeys.next()) {
+                idPedido = generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("Falha ao obter o ID gerado para o pedido.");
+            }
+
+            // Obtém os valores restantes dos campos
+            String nomeFornecedor = (String) comboFornecedor.getSelectedItem();
+            String nomeProduto = (String) comboNome.getSelectedItem();
+            int quantidade = (int) txtQuantidade.getValue();
+            double precoUnitario = Double.parseDouble(txtPrecoUnitario.getText());
+
+            // Obtém os IDs necessários
+            int idFornecedor = obterIdFornecedor(conexao, nomeFornecedor);
+            int idProduto = obterIdNome(conexao, nomeProduto);
+
+            // Insere os dados na tabela de itens do pedido
+            String sqlItens = "INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, valor_unitario, subtotal) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement pstmtItens = conexao.prepareStatement(sqlItens)) {
+                pstmtItens.setInt(1, idPedido);
+                pstmtItens.setInt(2, idProduto);
+                pstmtItens.setInt(3, quantidade);
+                pstmtItens.setDouble(4, precoUnitario);
+                pstmtItens.setDouble(5, quantidade * precoUnitario);
+
+                pstmtItens.executeUpdate();
+            }
+
+            JOptionPane.showMessageDialog(null, "Produto adicionado ao pedido!");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar produto ao pedido.");
+        } finally {
+            ConexaoBD.desconectar(conexao);
+        }
+    }
+
 }
 
