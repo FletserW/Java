@@ -13,7 +13,7 @@ public class main {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Menu Principal");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(800, 560);
+            frame.setSize(900, 560);
 
             Menu menuPanel = new Menu();
             frame.add(menuPanel);

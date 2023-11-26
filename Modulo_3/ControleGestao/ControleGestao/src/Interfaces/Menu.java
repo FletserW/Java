@@ -29,6 +29,7 @@ public class Menu extends JPanel {
         this.add(painelRegistrar);
         painelConsultar = new PainelConsultar(this);
         this.add(painelConsultar);
+        
         // Botão Registrar
         btnRegistrar = new JButton("Registrar");
         btnRegistrar.setBounds(450, 100, 200, 60);
