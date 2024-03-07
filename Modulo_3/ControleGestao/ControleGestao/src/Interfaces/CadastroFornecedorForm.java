@@ -5,9 +5,13 @@
 package Interfaces;
 
 /**
- *
- * @author reido
+ * Classe que representa o formulário de cadastro de fornecedor.
+ * Extende JFrame para criar a interface gráfica.
+ * Utiliza um painel e diversos componentes Swing para criar o formulário.
+ * Permite o cadastro de fornecedores no banco de dados.
+ * Usa a classe ConexaoBD para conectar ao banco de dados MySQL.
  */
+
 import BancoDeDados.ConexaoBD;
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +22,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CadastroFornecedorForm extends JFrame {
+    // Campos de texto para inserção de dados
     private JTextField txtNome, txtContato, txtTelefone;
 
+    /**
+      Construtor da classe que configura a interface do formulário.
+     */
     public CadastroFornecedorForm() {
         // Configurações da janela =============================================
         setTitle("Cadastro de Fornecedor");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centraliza na tela
 
         // Painel principal
@@ -50,13 +57,18 @@ public class CadastroFornecedorForm extends JFrame {
         lblTelefone.setBounds(10, 90, 150, 20);
         txtTelefone = new JTextField();
         txtTelefone.setBounds(160, 90, 200, 20);
+        
+        JLabel lblEmail = new JLabel("E-mail:");
+        lblEmail.setBounds(10, 120, 150, 20);
+        JTextField txtEmail = new JTextField();
+        txtEmail.setBounds(160, 120, 200, 20);
 
         // Botões ==============================================================
         JButton btnSalvar = new JButton("Salvar");
-        btnSalvar.setBounds(160, 120, 90, 30);
+        btnSalvar.setBounds(160, 150, 90, 30);
         JButton btnCancelar = new JButton("Cancelar");
-        btnCancelar.setBounds(260, 120, 100, 30);
-
+        btnCancelar.setBounds(260, 150, 100, 30);
+        
         // Definir a cor dos botões
         Color corDoBotao = new Color(0x97A989);
         btnSalvar.setBackground(corDoBotao);
@@ -76,6 +88,8 @@ public class CadastroFornecedorForm extends JFrame {
         panel.add(txtContato);
         panel.add(lblTelefone);
         panel.add(txtTelefone);
+        panel.add(lblEmail);
+        panel.add(txtEmail);
         panel.add(btnSalvar);
         panel.add(btnCancelar);
 
@@ -90,17 +104,19 @@ public class CadastroFornecedorForm extends JFrame {
                 String nome = txtNome.getText();
                 String contato = txtContato.getText();
                 String telefone = txtTelefone.getText();
+                String email = txtEmail.getText(); // Novo campo de e-mail
 
                 try {
                     // Conectar ao banco de dados
                     Connection conexao = ConexaoBD.conectar();
 
                     // Inserção de um novo fornecedor
-                    String sql = "INSERT INTO fornecedores (nome, contato, telefone) VALUES (?, ?, ?)";
+                    String sql = "INSERT INTO fornecedores (nome, contato, telefone, email) VALUES (?, ?, ?, ?)";
                     try (PreparedStatement pstmt = conexao.prepareStatement(sql)) {
                         pstmt.setString(1, nome);
                         pstmt.setString(2, contato);
                         pstmt.setString(3, telefone);
+                        pstmt.setString(4, email);
 
                         int linhasAfetadas = pstmt.executeUpdate();
                         if (linhasAfetadas > 0) {
@@ -120,6 +136,7 @@ public class CadastroFornecedorForm extends JFrame {
             }
         });
 
+
         // Define a ação do botão Cancelar =====================================
         btnCancelar.addActionListener(new ActionListener() {
             @Override
@@ -130,4 +147,3 @@ public class CadastroFornecedorForm extends JFrame {
         });
     }
 }
-

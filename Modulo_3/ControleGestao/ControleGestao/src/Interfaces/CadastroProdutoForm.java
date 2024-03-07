@@ -4,6 +4,19 @@
  */
 package Interfaces;
 
+/*
+ * Este código representa a interface gráfica de um formulário para cadastrar produtos em um sistema.
+ * Os principais componentes e funcionalidades são explicados a seguir:
+ * 
+ * - O formulário permite ao usuário inserir informações como nome do produto, quantidade por embalagem, valor e fornecedor.
+ * - A lista de fornecedores é preenchida dinamicamente a partir dos registros existentes no banco de dados.
+ * - Ao clicar no botão "Salvar", os dados inseridos são coletados e, em seguida, são utilizados para inserir um novo produto no banco de dados.
+ * - O valor do fornecedor é convertido para o correspondente ID de fornecedor antes de ser utilizado no comando SQL.
+ * - Em caso de sucesso na inserção, uma mensagem de sucesso é exibida; caso contrário, uma mensagem de falha é exibida.
+ * - O botão "Cancelar" fecha o formulário sem realizar qualquer operação.
+ * - As interações com o banco de dados são tratadas por meio da classe ConexaoBD, que lida com a conexão, execução de comandos SQL, e desconexão.
+*/
+
 import BancoDeDados.ConexaoBD;
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +40,6 @@ public class CadastroProdutoForm extends JFrame {
         // Configurações da janela
         setTitle("Cadastro de Produto");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centraliza na tela
 
         // Painel principal ====================================================
@@ -138,7 +150,7 @@ public class CadastroProdutoForm extends JFrame {
         });
 
 
-        // Define a ação do botão Cancelar
+        // Define a ação do botão Cancelar =====================================
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

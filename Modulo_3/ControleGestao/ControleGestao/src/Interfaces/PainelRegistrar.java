@@ -1,7 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Esta classe, PainelRegistrar, representa um painel específico dentro da interface gráfica destinado ao registro de dados.
+ * Ela contém botões para acessar funcionalidades relacionadas a produtos, pedidos, fornecedores e para voltar ao menu principal.
+ * 
+ * Principais componentes e funcionalidades:
+ * 
+ * - Botões para "Produtos", "Pedidos", "Fornecedores" e "Voltar".
+ * - Ao clicar nos botões "Produtos", "Pedidos" e "Fornecedores", os formulários de cadastro correspondentes são exibidos.
+ * - O botão "Voltar" permite retornar ao menu principal.
  */
+
 package Interfaces;
 
 import java.awt.Color;
@@ -13,11 +20,9 @@ import javax.swing.JPanel;
 
 public class PainelRegistrar extends JPanel {
     private Menu menu;
-    
+
     public PainelRegistrar(Menu menu) {
-        //setSize(1200, 1200);
         setLayout(null);
-        
         this.menu = menu;
 
         // Definir a cor de fundo
@@ -30,24 +35,23 @@ public class PainelRegistrar extends JPanel {
         // Fonte para os botões
         Font fonte = new Font("Arial", Font.BOLD, 16);
 
-        // Botão Estoque==========================================================
-        JButton btnEstoque = new JButton("Produtos");
-        btnEstoque.setBounds(450, 100, 200, 60);
-        btnEstoque.setBackground(corDoBotao);
-        btnEstoque.setForeground(Color.WHITE);
-        btnEstoque.setFont(fonte);
-        add(btnEstoque);
-        btnEstoque.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Cria e exibe o formulário de cadastro de produto
-        CadastroProdutoForm cadastroProdutoForm = new CadastroProdutoForm();
-        cadastroProdutoForm.setVisible(true);
-    }
-});
+        // Botão "Produtos"
+        JButton btnProdutos = new JButton("Produtos");
+        btnProdutos.setBounds(450, 100, 200, 60);
+        btnProdutos.setBackground(corDoBotao);
+        btnProdutos.setForeground(Color.WHITE);
+        btnProdutos.setFont(fonte);
+        add(btnProdutos);
+        btnProdutos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Cria e exibe o formulário de cadastro de produto
+                CadastroProdutoForm cadastroProdutoForm = new CadastroProdutoForm();
+                cadastroProdutoForm.setVisible(true);
+            }
+        });
 
-
-        // Botão Pedidos======================================================
+        // Botão "Pedidos"
         JButton btnPedidos = new JButton("Pedidos");
         btnPedidos.setBounds(450, 200, 200, 60);
         btnPedidos.setBackground(corDoBotao);
@@ -62,7 +66,7 @@ public class PainelRegistrar extends JPanel {
             }
         });
 
-        // Botão Fornecedores=================================================
+        // Botão "Fornecedores"
         JButton btnFornecedores = new JButton("Fornecedores");
         btnFornecedores.setBounds(450, 300, 200, 60);
         btnFornecedores.setBackground(corDoBotao);
@@ -77,7 +81,7 @@ public class PainelRegistrar extends JPanel {
             }
         });
 
-        // Botão Voltar======================================================
+        // Botão "Voltar"
         JButton btnVoltar = new JButton("Voltar");
         btnVoltar.setBounds(450, 400, 200, 60);
         btnVoltar.setBackground(corDoBotao);
@@ -91,12 +95,8 @@ public class PainelRegistrar extends JPanel {
                 setVisible(false); // Oculta o PainelConsultar
             }
         });
-        
+
         setBounds(10, 10, 700, 500);
         setVisible(false); // Inicialmente, o painel Consultar está oculto
     }
-
-
- 
 }
-

@@ -1,3 +1,15 @@
+/*
+ * Este código representa a implementação da classe Menu, que é uma extensão de JPanel e funciona como o menu principal da interface gráfica.
+ * Os principais componentes e funcionalidades são explicados a seguir:
+ * 
+ * - A classe possui três botões: "Registrar", "Consultar" e "Sair".
+ * - Os botões são estilizados com cores e fontes específicas.
+ * - Um ícone é exibido à esquerda do menu.
+ * - A classe inclui dois painéis adicionais (PainelRegistrar e PainelConsultar), que são alternadamente exibidos ao clicar nos botões correspondentes.
+ * - Os botões possuem ActionListener para lidar com as ações do usuário.
+ * - O botão "Sair" fecha o aplicativo quando clicado.
+ * - Métodos adicionais são fornecidos para controlar a visibilidade dos botões e alternar entre os painéis.
+ */
 package Interfaces;
 
 import javax.swing.*;
@@ -25,6 +37,7 @@ public class Menu extends JPanel {
         imagemLabel.setBounds(10, 10, imagem.getIconWidth(), imagem.getIconHeight());
         add(imagemLabel);
         
+        // Inicializar os painéis de Registrar e Consultar
         painelRegistrar = new PainelRegistrar(this);
         this.add(painelRegistrar);
         painelConsultar = new PainelConsultar(this);
@@ -74,25 +87,24 @@ public class Menu extends JPanel {
         });
     }
     
-    //Metodos ==============================================================
+    // Métodos ==============================================================
     
-    //Fazer o botoes aparecer
+    // Fazer os botões aparecer
     public void mostrarBotoes(boolean mostrar) {
         btnRegistrar.setVisible(mostrar);
         btnConsultar.setVisible(mostrar);
         btnSair.setVisible(mostrar);
     }
 
-    //Exibir o painel do Consultar
+    // Exibir o painel de Consultar
     private void exibirPainelConsultar() {
         mostrarBotoes(false);
         painelConsultar.setVisible(true);
         painelRegistrar.setVisible(false);
     }
     
-    //Exibir o painel de Registrar
-     private void exibirPainelRegistrar() {
-        // Oculte os botões do menu
+    // Exibir o painel de Registrar
+    private void exibirPainelRegistrar() {
         mostrarBotoes(false);
         painelRegistrar.setVisible(true);
         painelConsultar.setVisible(false);

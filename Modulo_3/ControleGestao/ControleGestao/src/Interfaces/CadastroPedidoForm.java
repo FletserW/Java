@@ -5,8 +5,11 @@
 package Interfaces;
 
 /**
- *
- * @author reido
+ * Classe que representa o formulário de cadastro de pedidos.
+ * Extende JFrame para criar a interface gráfica.
+ * Utiliza um painel e diversos componentes Swing para criar o formulário.
+ * Permite o cadastro de pedidos no banco de dados, incluindo produtos e fornecedores.
+ * Utiliza a classe ConexaoBD para conectar ao banco de dados MySQL.
  */
 import BancoDeDados.ConexaoBD;
 import javax.swing.*;
@@ -19,29 +22,45 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.text.NumberFormatter;
 import java.text.NumberFormat;
-
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.Date;
 
 public class CadastroPedidoForm extends JFrame {
+    // Campos de texto para inserção de dados
     private JTextField txtNumeroPedido, txtDataPedido, txtFornecedor, txtPrecoUnitario;
     private JTextArea txtAreaObservacoes;
-    private JButton btnAdicionarProduto, btnFinalizarPedido;
+    private JButton btnAdicionarProduto, btnFinalizarPedido,btnCancelar;
     private JDateChooser dateChooser;
     private JComboBox<String> comboFornecedor, comboNome;
     private JFormattedTextField txtQuantidade;
 
+    /**
+     * Construtor da classe que configura a interface do formulário.
+     */
     public CadastroPedidoForm() {
         // Configurações da janela =============================================
         setTitle("Formulário de Pedido");
         setSize(600, 400);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centraliza na tela
-
+        
         // Painel principal
         JPanel panel = new JPanel();
         panel.setLayout(null);
+        
+        // Define a cor de fundo
+        Color corDeFundo = new Color(0x6E8066);
 
+        // Configura o painel para ser desenhado com a cor de fundo
+        panel.setBackground(corDeFundo);
+
+        // Certifique-se de que o painel seja opaco para garantir que a cor de fundo seja desenhada
+        panel.setOpaque(true);
+        // Fonte para os botões
+        
+        Font fonte = new Font("Arial", Font.BOLD, 16);
+        
         // Componentes do formulário ===========================================
         JLabel lblNumeroPedido = new JLabel("Número do Pedido:");
         lblNumeroPedido.setBounds(10, 10, 150, 20);
@@ -64,18 +83,24 @@ public class CadastroPedidoForm extends JFrame {
         comboNome = new JComboBox<>();
         comboNome.setBounds(160, 100, 150, 20);
         preencherComboNome();
-        
-        
+
         JLabel lblQuantidade = new JLabel("Quantidade:");
         lblQuantidade.setBounds(10, 130, 150, 20);
-        
+
+        // Cria uma instância de NumberFormat específica para números inteiros
         NumberFormat format = NumberFormat.getIntegerInstance();
+        // Cria um NumberFormatter usando a instância de NumberFormat criada
         NumberFormatter formatter = new NumberFormatter(format);
+        // Define a classe de valor para Integer, indicando que o campo aceitará valores inteiros
         formatter.setValueClass(Integer.class);
+        // Define o valor mínimo permitido no campo como 0 (zero)
         formatter.setMinimum(0);
+        // Define o valor máximo permitido no campo como o valor máximo possível para um inteiro
         formatter.setMaximum(Integer.MAX_VALUE);
+        // Configura o formatter para não permitir valores inválidos, ou seja, valores que não seguem o formato esperado
         formatter.setAllowsInvalid(false);
-        
+
+
         txtQuantidade = new JFormattedTextField(formatter);
         txtQuantidade.setBounds(160, 130, 150, 20);
 
@@ -90,10 +115,23 @@ public class CadastroPedidoForm extends JFrame {
         txtAreaObservacoes.setBounds(160, 190, 400, 100);
 
         // Botões ==============================================================
+        Color corDoBotao = new Color(0x97A989);
+        //Adicionar produto
         btnAdicionarProduto = new JButton("Adicionar Produto");
         btnAdicionarProduto.setBounds(10, 300, 150, 30);
+        btnAdicionarProduto.setBackground(corDoBotao);
+        btnAdicionarProduto.setBackground(corDoBotao);
+        //Finalizar pedido
         btnFinalizarPedido = new JButton("Finalizar Pedido");
         btnFinalizarPedido.setBounds(180, 300, 150, 30);
+        btnFinalizarPedido.setBackground(corDoBotao);
+        btnFinalizarPedido.setBackground(corDoBotao);
+        //cancelar
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBounds(350, 300, 150, 30);
+        btnCancelar.setBackground(corDoBotao);
+        btnCancelar.setBackground(corDoBotao);
+        
 
         // Adiciona os componentes ao painel ===================================
         panel.add(lblNumeroPedido);
@@ -112,6 +150,7 @@ public class CadastroPedidoForm extends JFrame {
         panel.add(txtAreaObservacoes);
         panel.add(btnAdicionarProduto);
         panel.add(btnFinalizarPedido);
+        panel.add(btnCancelar);
 
         // Adiciona o painel à janela
         add(panel);
@@ -120,28 +159,34 @@ public class CadastroPedidoForm extends JFrame {
         btnAdicionarProduto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        adicionarProdutoAoPedido();
-    }
+                adicionarProdutoAoPedido();
+            }
         });
 
         // Define a ação do botão Finalizar Pedido =============================
         btnFinalizarPedido.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica para finalizar o pedido
-                // Pode ser necessário adicionar lógica de validação e cálculos aqui
                 JOptionPane.showMessageDialog(null, "Pedido finalizado com sucesso!");
+                dispose();
             }
         });
-        
+        // Define a ação do botão Finalizar Pedido =============================
+            btnCancelar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
         
     }
-    //Adicionar data ===========================================================
+
+    // Método para obter a data selecionada no componente de data ==============
     private Date getDataSelecionada() {
         return dateChooser.getDate();
     }
 
-    //Preenche ComboBox dos fornecedores =======================================
+    // Preenche o ComboBox dos fornecedores ===================================
     private void preencherComboFornecedor() {
         try {
             Connection conexao = ConexaoBD.conectar();
@@ -160,7 +205,7 @@ public class CadastroPedidoForm extends JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao preencher fornecedores.");
         }
     }
-    
+
     // Método para obter o ID do fornecedor pelo nome ==========================
     private int obterIdFornecedor(Connection conexao, String nomeFornecedor) throws SQLException {
         String sql = "SELECT id FROM fornecedores WHERE nome = ?";
@@ -176,8 +221,8 @@ public class CadastroPedidoForm extends JFrame {
             }
         }
     }
-    
-    //Preenche ComboBox dos Nome do prodito ====================================
+
+    // Preenche o ComboBox dos nomes dos produtos =============================
     private void preencherComboNome() {
         try {
             Connection conexao = ConexaoBD.conectar();
@@ -193,11 +238,11 @@ public class CadastroPedidoForm extends JFrame {
             conexao.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro ao preencher fornecedores.");
+            JOptionPane.showMessageDialog(null, "Erro ao preencher nomes dos produtos.");
         }
     }
-    
-    // Método para obter o ID do fornecedor pelo nome ==========================
+
+    // Método para obter o ID do produto pelo nome ============================
     private int obterIdNome(Connection conexao, String nomeProduto) throws SQLException {
         String sql = "SELECT id FROM produtos WHERE nome = ?";
         try (PreparedStatement pstmt = conexao.prepareStatement(sql)) {
@@ -207,12 +252,13 @@ public class CadastroPedidoForm extends JFrame {
                 if (rs.next()) {
                     return rs.getInt("id");
                 } else {
-                    throw new SQLException("Fornecedor não encontrado: " + nomeProduto);
+                    throw new SQLException("Produto não encontrado: " + nomeProduto);
                 }
             }
         }
     }
-    //Adicionar produtos ao pedido =============================================
+
+    // Adiciona um produto ao pedido =========================================
     private void adicionarProdutoAoPedido() {
         Connection conexao = ConexaoBD.conectar();
 
@@ -268,6 +314,4 @@ public class CadastroPedidoForm extends JFrame {
             ConexaoBD.desconectar(conexao);
         }
     }
-
 }
-
